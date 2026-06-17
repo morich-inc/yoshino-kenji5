@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>吉野賢治 様｜morich キャリアご提案</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --red: #E60012;
+    --red-light: #fff0f0;
+    --gray-50: #f9fafb;
+    --gray-100: #f3f4f6;
+    --gray-200: #e5e7eb;
+    --gray-500: #6b7280;
+    --gray-600: #4b5563;
+    --gray-700: #374151;
+    --gray-900: #111827;
+    --blue-50: #eff6ff;
+    --blue-100: #dbeafe;
+    --blue-600: #2563eb;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Noto Sans JP', sans-serif; background: #f5f5f5; color: var(--gray-900); line-height: 1.75; }
+  header { background: #fff; border-bottom: 3px solid var(--red); padding: 14px 24px; display: flex; align-items: center; gap: 16px; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,0.07); }
+  header img { height: 38px; }
+  header .htxt p:first-child { font-size: 12px; color: var(--gray-500); }
+  header .htxt p:last-child { font-size: 17px; font-weight: 900; }
+  .nav-bar { background: var(--gray-900); padding: 0 12px; overflow-x: auto; white-space: nowrap; }
+  .nav-bar a { display: inline-block; padding: 13px 18px; color: #ccc; text-decoration: none; font-size: 12px; font-weight: 700; border-bottom: 3px solid transparent; transition: all 0.2s; }
+  .nav-bar a:hover { color: #fff; border-bottom-color: var(--red); }
+  main { max-width: 860px; margin: 0 auto; padding: 28px 14px 64px; }
+  .card { background: #fff; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.07); margin-bottom: 40px; overflow: hidden; border-top: 5px solid var(--red); }
+  .card-inner { padding: 28px 28px 36px; }
+  .badges { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 14px; }
+  .badge { font-size: 11px; font-weight: 700; padding: 3px 12px; border-radius: 999px; border: 2px solid var(--red); color: var(--red); background: var(--red-light); }
+  .badge-blue { border-color: var(--blue-600); color: var(--blue-600); background: var(--blue-50); }
+  .co-name { font-size: clamp(22px, 5vw, 34px); font-weight: 900; line-height: 1.2; margin-bottom: 5px; }
+  .co-url { font-size: 12px; margin-bottom: 22px; }
+  .co-url a { color: var(--blue-600); text-decoration: none; }
+  .co-url a:hover { text-decoration: underline; }
+  .overview { background: var(--blue-50); border: 1px solid var(--blue-100); border-radius: 8px; padding: 16px 20px; margin-bottom: 22px; }
+  .overview h3 { font-size: 10px; font-weight: 700; color: var(--blue-600); text-transform: uppercase; letter-spacing: .1em; margin-bottom: 10px; }
+  .overview table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .overview tr { border-bottom: 1px solid var(--blue-100); }
+  .overview tr:last-child { border-bottom: none; }
+  .overview th { text-align: left; padding: 6px 14px 6px 0; color: var(--gray-600); font-weight: 700; width: 100px; vertical-align: top; white-space: nowrap; }
+  .overview td { padding: 6px 0; color: var(--gray-700); }
+  .highlight { background: var(--red-light); border: 2px solid var(--red); border-radius: 8px; padding: 16px 20px; margin-bottom: 22px; }
+  .highlight h3 { font-size: 13px; font-weight: 900; color: var(--red); margin-bottom: 8px; }
+  .highlight p, .highlight li { font-size: 13px; color: #7a0000; margin-bottom: 4px; }
+  .highlight ul { padding-left: 16px; }
+  .accordion { margin-bottom: 16px; }
+  .acc-header { display: flex; align-items: flex-start; justify-content: space-between; cursor: pointer; padding: 12px 16px; background: var(--gray-50); border: 1px solid var(--gray-200); border-radius: 8px; user-select: none; transition: background 0.15s; }
+  .acc-header:hover { background: var(--gray-100); }
+  .acc-header .label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--red); border-left: 3px solid var(--red); padding-left: 8px; margin-bottom: 5px; display: block; }
+  .acc-preview { font-size: 12px; color: var(--gray-500); line-height: 1.6; }
+  .acc-header-left { flex: 1; }
+  .acc-icon { width: 28px; height: 28px; flex-shrink: 0; margin-left: 12px; margin-top: 2px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: var(--gray-200); font-size: 13px; transition: transform 0.25s, background 0.2s; }
+  .acc-header.open .acc-icon { transform: rotate(180deg); background: var(--red); color: #fff; }
+  .acc-header.open { border-bottom-left-radius: 0; border-bottom-right-radius: 0; border-bottom-color: transparent; }
+  .acc-body { display: none; padding: 20px 18px; border: 1px solid var(--gray-200); border-top: none; border-bottom-left-radius: 8px; border-bottom-right-radius: 8px; font-size: 13px; color: var(--gray-700); line-height: 1.85; }
+  .acc-body.open { display: block; }
+  .acc-body p { margin-bottom: 10px; }
+  .acc-body ul { padding-left: 18px; margin-bottom: 10px; }
+  .acc-body li { margin-bottom: 6px; }
+  .job-wrap { border: 1px solid var(--gray-200); border-radius: 8px; overflow: hidden; margin-bottom: 16px; }
+  .job-header { background: var(--gray-900); color: #fff; padding: 14px 18px; display: flex; align-items: flex-start; justify-content: space-between; cursor: pointer; user-select: none; }
+  .job-title-text { font-size: 14px; font-weight: 900; margin-bottom: 3px; }
+  .job-preview { font-size: 11px; color: #aaa; line-height: 1.5; }
+  .job-icon { width: 26px; height: 26px; flex-shrink: 0; margin-left: 12px; margin-top: 2px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: rgba(255,255,255,0.15); font-size: 12px; transition: transform 0.25s; }
+  .job-header.open .job-icon { transform: rotate(180deg); }
+  .job-body { display: none; padding: 20px 18px; font-size: 13px; color: var(--gray-700); line-height: 1.85; }
+  .job-body.open { display: block; }
+  .job-body p { margin-bottom: 10px; }
+  .job-body ul { padding-left: 18px; margin-bottom: 10px; }
+  .job-body li { margin-bottom: 6px; }
+  .job-section { font-size: 11px; font-weight: 700; color: var(--red); text-transform: uppercase; letter-spacing: .06em; margin: 14px 0 6px; }
+  .tag { display: inline-block; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 4px; margin-right: 5px; margin-bottom: 8px; }
+  .tag-must { background: var(--red); color: #fff; }
+  .tag-want { background: var(--gray-600); color: #fff; }
+  .meta-pills { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 14px; }
+  .pill { font-size: 12px; font-weight: 700; padding: 4px 11px; border-radius: 999px; background: var(--gray-100); color: var(--gray-700); border: 1px solid var(--gray-200); }
+  .section-label { font-size: 11px; font-weight: 700; color: var(--gray-500); text-transform: uppercase; letter-spacing: .08em; border-left: 3px solid var(--red); padding-left: 8px; margin: 22px 0 10px; }
+  .links { display: flex; flex-wrap: wrap; gap: 8px; }
+  .lbtn { display: inline-flex; align-items: center; gap: 5px; padding: 7px 14px; border-radius: 6px; background: var(--gray-900); color: #fff; font-size: 12px; font-weight: 700; text-decoration: none; transition: background 0.2s; }
+  .lbtn:hover { background: var(--red); }
+  .lbtn-out { background: transparent; color: var(--gray-900); border: 2px solid var(--gray-200); }
+  .lbtn-out:hover { background: var(--gray-900); color: #fff; border-color: var(--gray-900); }
+  footer { text-align: center; padding: 28px 16px; font-size: 11px; color: var(--gray-500); border-top: 1px solid var(--gray-200); background: #fff; }
+  @media(max-width:600px){ .card-inner{ padding: 18px 14px 24px; } .overview th { width: 80px; } }
+</style>
+</head>
+<body>
+<header>
+  <img src="morich_logo.jpg" alt="morich">
+  <div class="htxt">
+    <p>morich キャリアご提案資料</p>
+    <p>吉野賢治 様</p>
+  </div>
+</header>
+<nav class="nav-bar">
+  <a href="#k1">1. 株式会社Hajimari</a>
+</nav>
+<main>
+
+<div class="card" id="k1"><div class="card-inner">
+  <div class="badges"><span class="badge">SES事業責任者（社長候補）</span><span class="badge badge-blue">未上場</span></div>
+  <div class="co-name">株式会社Hajimari</div>
+  <div class="co-url"><a href="https://www.hajimari.inc/" target="_blank">https://www.hajimari.inc/</a></div>
+  <div class="overview">
+    <h3>Corporate Overview</h3>
+    <table><tr><th>本社住所</th><td>東京都渋谷区道玄坂一丁目16番10号 渋谷DTビル 9階</td></tr><tr><th>代表者</th><td>代表取締役 木村 直人</td></tr><tr><th>事業内容</th><td>プロシェアリング事業（ITプロパートナーズ、人事プロパートナーズ、マーケティングプロパートナーズ、ファイナンスプロパートナーズ）、キャリア支援（intee）、開発支援（TUKURUS）など14以上の事業</td></tr><tr><th>売上</th><td>2024年度 売上100億円突破（2026年度 210億円目標）</td></tr><tr><th>平均成長率</th><td>156%</td></tr><tr><th>有料職業紹介事業</th><td>13-ユ-307288</td></tr><tr><th>一般労働者派遣事業</th><td>派13-306091</td></tr></table>
+  </div>
+  <div class="highlight">
+    <h3>⭐ morichオススメPoint</h3>
+    <ul><li>「自立した人材を増やし、人生の幸福度を高める。」というビジョンが明確でわかりやすく、社員への浸透がしやすい</li><li>組織や環境に依存することなく自分の足で立ち、人生の主導権を握って意思決定する「キャリア自律」の重要性を以前から理解し、リスキリングの時代がやってくることを予見していた先見性がある</li><li>収益力があり財務体質も盤石。デッドファイナンスで有利に資金調達ができ、VCを入れなくても上場でき、上場確度が非常に高い</li><li>事業としてもまだまだ横展開できる余地が大きく、営業シナジーが大きい（営業コストを抑えてリードが獲得できる）</li><li>非常に事業伸長しているにも関わらず幹部社員が少ないため、キャリアアップのチャンスが大きい</li><li>★社長リレーション ★カジュアル面談スタート可 ★過去複数名入社実績アリ</li></ul>
+  </div>
+  <div class="accordion">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <div class="acc-header-left">
+        <span class="label">企業紹介</span>
+        <div class="acc-preview">創業10期目を迎え、平均成長率156％という圧倒的なスピードでHR業界を席巻するプロシェアリング市場のリーディングカンパニー。「自立した人材を増やし、人生の幸福度を高める」というビジョンのもと、フリーランス支援から最先端SaaS事業まで14以上の事業を多角展開。2024年度には売上100億円を突破し、2035年には売上1,000億円・従業員1,000名体制を目指す。</div>
+      </div>
+      <div class="acc-icon">▼</div>
+    </div>
+    <div class="acc-body"><p>創業10期目を迎え、平均成長率156％という圧倒的なスピードでHR業界を席巻するプロシェアリング市場のリーディングカンパニーです。「自立した人材を増やし、人生の幸福度を高める」という揺るぎないビジョンのもと、フリーランス支援から最先端SaaS事業まで14以上の事業を多角展開。2024年度には売上100億円を突破し、2026年度には売上210億円、そして2035年には売上1,000億円・従業員1,000名体制を目指す壮大なロードマップの渦中にあります。</p><p>社名には「一歩踏み出す覚悟がある限り、人はいつでも新しい人生を始められる」という信念が込められており、全メンバーが自らの人生の主導権を握り、挑戦を続けています。独自のテクノロジーとGoogleとの強固なアライアンスを武器に、未開拓の市場を切り拓く同社は、まさにマーケットリーダーとしての地位を盤石にし、さらなる高みへスケールするフェーズです。</p><p><strong>主要サービス：</strong></p><ul><li><strong>ITプロパートナーズ</strong>：優秀なIT起業家・フリーランスと成長企業のマッチング支援サービス</li><li><strong>人事プロパートナーズ</strong>：「即戦力人事」と「成長企業」の業務委託マッチングサービス</li><li><strong>マーケティングプロパートナーズ</strong>：マーケティング領域に特化したプロ人材マッチングサービス</li><li><strong>ファイナンスプロパートナーズ</strong>：ハイスキル経理財務人材と成長企業のマッチングサービス</li><li><strong>intee</strong>：スキルアップ型キャリア支援サービス</li><li><strong>TUKURUS</strong>：地方創生・スタートアップ向け開発支援サービス</li></ul><p><strong>代表取締役 木村 直人氏：</strong><br>2005年 早稲田大学卒業後、大手損害保険会社を経て、I&amp;G Partners（現アトラエ）入社。成功報酬型求人サイト「Green」の立ち上げから関わり、仕組みを作る。その後人材系のベンチャー企業に参画し、取締役COOに就任。新規事業としてIT分野のプロフェッショナル人材を活用する「ITプロ事業」を立ち上げる。2015年4月より「ITプロ事業」を業務移管させる形で、株式会社Hajimariを創業。代表取締役に就任。</p><p><strong>競合優位性：</strong></p><ul><li><strong>Google公式パートナーとしての独占的優位性：</strong>Google役員層との直接連携や高度な技術力を武器に、市場の成長を独占的に取り込む「勝てる仕組み」を構築。</li><li><strong>生産性3倍を叩き出すテクノロジー集約型モデル：</strong>AIツールや独自のマッチングエンジンを自社開発。労働集約的な人材ビジネスを脱し、競合が追随不能な高利益率を実現。</li><li><strong>1,000億規模を見据えるマルチプロダクト戦略：</strong>14以上の事業から得られる膨大なデータを基盤に、新事業を連続投下。データドリブンな経営で圧倒的な再現性を誇る。</li><li><strong>技術を事業化する「技術ファースト」な精鋭組織：</strong>CTO岡田氏を筆頭にトップ級エンジニアが集結。技術をいかにマネタイズし、市場を再定義するかという本質に挑める。</li></ul><p>木村社長はクレバーで意思決定スピードが早いながらも、気さくで親しみやすいお人柄です。社風としてはMVVに共感し本気で事業を伸ばしたい方が集まっており、平均年齢は28歳と比較的若いですが、40〜60代の経営幹部メンバーも活躍しています。</p><p>2035年の中長期目標として「ロマンと算盤が高いレベルで両立した、真に偉大な自立創造企業になる」というBHAGを掲げており、「全てのメンバーが自立し、心からビジョンに共感し、今が幸せである」と言えるような組織を本気で目指しています。</p></div>
+  </div>
+  
+    <div class="job-wrap">
+      <div class="job-header" onclick="toggleJob(this)">
+        <div>
+          <div class="job-title-text">📋 SES事業「TUKURUS」の非連続な成長を牽引する事業責任者（将来の分社化を見据えた社長候補）</div>
+          <div class="job-preview">精鋭エンジニア集団「TUKURUS」を日本を代表するテックリード集団へスケールさせる事業責任者（社長候補）を募集。P/L責任を持ち、数年以内の分社化を視野に入れた経営のバトンを渡せる人材を求める。</div>
+        </div>
+        <div class="job-icon">▼</div>
+      </div>
+      <div class="job-body">
+        <p><strong>【ミッション：TUKURUSを、日本を代表するテックリード集団へ】</strong></p><p>株式会社Hajimariが展開する、精鋭エンジニア集団として企業のDXを支援する「TUKURUS」は現在第2創業期を迎えています。単なる受託開発組織ではなく、Google Cloud（GCP）等の先端技術を駆使し、クライアントのビジネスモデルそのものを変革する「高付加価値SIer」へとスケールさせることが本ポジションのミッションです。数年以内の事業分社化も視野に入れており、経営者としてP/L責任を持ち、組織文化の醸成と事業成長を両立していただける「経営のバトンを渡せる社長候補」を募集します。</p><p><strong>【募集背景】</strong></p><p>50名規模から100名、200名体制（将来的には全国800名体制）への組織拡大を見据え、Google Cloudを中心としたモダンな技術選定による事業進化を加速させるための中核メンバーを募集します。</p><p><strong>【具体的な業務内容】</strong></p><ul><li><strong>経営戦略の立案・実行：</strong>中長期的な事業計画の策定、投資判断、収益性の最大化（2035年に売上100億円・営業利益30億円の達成を目指します）</li><li><strong>技術戦略（GCP軸）：</strong>Google Cloudパートナーとしての地位確立、資格取得支援などの制度構築、高単価案件（1名単価150万円目標）へのシフトと技術選定の監督</li><li><strong>組織マネジメント・構築：</strong>コンスタントに年間30〜40名（新卒15名/中途20名目安）を採用できる体制構築。地方拠点の新設、地方企業のM&amp;Aを含めた採用戦略の実行と、評価制度・マネージャー陣の育成</li><li><strong>営業・アライアンス：</strong>大手クライアントとのトップリレーション構築、Google日本法人等との強固なパートナーシップ強化</li><li><strong>分社化準備：</strong>組織ガバナンスの整備、経営基盤の構築</li></ul><p><strong>【当面の組織構築ベンチマーク（年間）】</strong></p><ul><li>年間採用目標：35名（新卒：高専生等含め15名 / 中途：20名）</li></ul><p><strong>【将来的な800名体制の組織・拠点構想】</strong></p><ul><li>拠点イメージ：東京200名、大阪100名、福岡50名、長野50名、北海道50名 ＋ その他地方拠点（20名×10拠点、10名×10拠点、5名×10拠点）＝ 計800名規模</li><li>案件構想：Google案件にフォーカス。ポテンシャルのある80企業を開拓し、1企業あたり10名参画（80企業×10名＝800名の稼働体制）</li><li>ピラミッド構造：PM80名 / リーダー240名 / メンバー480名の体制構築を目指す</li></ul><p><strong>【想定するチーム編成と単価感（1セット：7〜10名）】</strong></p><ul><li>営業・PJ責任者（1名）：年収1000〜1200万円（月額80-100万円）→ 企業提案単価：200万円</li><li>PM・リーダー（2〜3名）：年収700〜800万円（月額60-70万円）→ 企業提案単価：120〜140万円</li><li>メンバー（数名）：年収500〜650万円（月額40-55万円）→ 企業提案単価：80〜110万円</li></ul><p><strong>【このポジションの魅力】</strong></p><ul><li><strong>「Hajimari」のリソース活用：</strong>80,000人以上が利用するITプロパートナーズ等の既存事業が持つ、強力な集客力・顧客基盤をレバレッジとして活用可能</li><li><strong>分社化・社長就任：</strong>成果次第で、早期に子会社代表への就任を想定。経営者としてのキャリアを地続きで得られる環境</li><li><strong>技術の純度：</strong>レガシーな受託ではなく、Google Cloudを中心とした「攻めのDX」に特化した組織作りがゼロベースで可能</li></ul><p><strong>【必須要件】</strong><br>下記いずれかのご経験をお持ちの方：</p><ul><li><span class='tag tag-must'>MUST</span> クラウド特化SIer（Google Cloud等）にて、役員や拠点長として事業を急拡大させた経験</li><li><span class='tag tag-must'>MUST</span> 大手SIerのDX部門等にて、既存の商習慣を打破し、モダンな受託モデルを成功させた経験</li><li><span class='tag tag-must'>MUST</span> 成長中のエンジニアスタートアップで、COO/CTOとして組織を100名規模まで引き上げた経験</li><li><span class='tag tag-must'>MUST</span> 50〜100名規模のエンジニア組織におけるマネジメント・事業推進経験</li></ul><p><strong>【歓迎要件】</strong></p><ul><li><span class='tag tag-want'>WANT</span> Google Cloudの深い知識、またはアライアンス構築経験</li><li><span class='tag tag-want'>WANT</span> 地方拠点の立ち上げ、またはM&amp;Aの推進経験</li><li><span class='tag tag-want'>WANT</span> 生成AIアプリ開発、データ分析基盤構築の経験</li><li><span class='tag tag-want'>WANT</span> Hajimariの理念（自立した人材を増やし、人生の幸福度を高める）に共感いただける方</li><li><span class='tag tag-want'>WANT</span> 「ジブンゴト化」ができる方（自由な働き方だけを求めるのではなく、組織や事業の成長に当事者意識を持てる方）</li><li><span class='tag tag-want'>WANT</span> 過去の実績を残すにあたり、どんな戦略・戦術を立てたのか自分の言葉で語れる方（再現可能な構造化が得意な方）</li><li><span class='tag tag-want'>WANT</span> 周囲や自分自身に対して誠実であり、感謝を忘れない方</li></ul><p><strong>【想定年収】</strong>1,000万円〜4,000万円</p><p><strong>【雇用形態】</strong>正社員</p><p><strong>【勤務地】</strong>東京本社（東京都渋谷区道玄坂一丁目16番10号 渋谷DTビル 9階）</p><p><strong>【勤務時間】</strong>09:30〜18:30（休憩60分）／残業 月30〜60時間程度</p><p><strong>【休日・休暇】</strong></p><ul><li>年間休日120日</li><li>完全週休二日制（土・日）、祝日、夏季休暇、年末年始</li><li>年次有給休暇、特別休暇</li></ul><p><strong>【福利厚生】</strong></p><ul><li>社会保険完備</li><li>評価制度（年2回）</li><li>家賃補助制度：渋谷オフィスから3km圏内に住むと家賃補助が支給（勤続5年以上の場合、距離に関わらず支給）</li><li>半期MVP制度：半期で最もバリューを体現した人を表彰する制度</li><li>社外研修制度：専門知識を身につけるために、社外の研修を受けられる制度</li><li>資格取得支援制度：受験費を会社が負担し、資格受験ができる制度</li><li>部活動制度：社内の交流の活性化を目的に公認部活に部費を支給する制度</li><li>育休産休制度：育休産休については男女関係なく取得することが可能</li><li>定年制：有（60歳：65歳まで再雇用制度有）</li></ul>
+        <div class="meta-pills"><span class="pill">📍 東京（渋谷区）</span><span class="pill">💰 1,000万円〜4,000万円</span><span class="pill">✅ 正社員</span><span class="pill">🕐 09:30〜18:30</span></div>
+      </div>
+    </div>
+  <div class="section-label">外部リンク</div>
+  <div class="links"><a class="lbtn" href="https://www.hajimari.inc/" target="_blank">🏢 企業サイト</a><a class="lbtn lbtn-out" href="https://www.wantedly.com/companies/Hajimari/post_articles/70510" target="_blank">📝 創業ストーリー</a><a class="lbtn lbtn-out" href="https://note.com/hajimari_0226/n/n6ca8ce6aae45" target="_blank">📝 3カ年ビジョン</a><a class="lbtn lbtn-out" href="https://note.com/hajimari_recruit/n/nf4a1324fb0be" target="_blank">📝 Core Valuesワークショップ</a></div>
+</div></div>
+</main>
+<footer>
+  <p>本資料はmorichが吉野賢治 様のためにご用意した個人情報を含む機密資料です。無断転用・転載はご遠慮ください。</p>
+  <p style="margin-top:6px;">© 株式会社morich</p>
+</footer>
+<script>
+  function toggleAcc(header) {
+    const body = header.nextElementSibling;
+    header.classList.toggle('open');
+    body.classList.toggle('open');
+  }
+  function toggleJob(header) {
+    const body = header.nextElementSibling;
+    header.classList.toggle('open');
+    body.classList.toggle('open');
+  }
+</script>
+</body>
+</html>
